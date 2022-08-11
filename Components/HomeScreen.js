@@ -7,19 +7,18 @@ export default function HomeScreen({navigation}) {
   
   return (
     <View style={{alignItems:'center'}}>
-
-    <TouchableOpacity
+      <TouchableOpacity
       onPress={() =>
-        navigation.navigate('Add Meal', { name: 'Jane' })
+        navigation.navigate('Add Meal Member', { name: 'Jane' })
       }
-      style={[styles.button,styles.topButton]}
+      style={[styles.button,,styles.topButton]}
     ><Text 
     style={styles.buttonText}
     >
-      Add Meal
+      Add Meal Member
     </Text>
     </TouchableOpacity>
-    <TouchableOpacity
+    {/* <TouchableOpacity
       onPress={() =>
         navigation.navigate('Edit Meal', { name: 'Jane' })
       }
@@ -28,6 +27,17 @@ export default function HomeScreen({navigation}) {
     style={styles.buttonText}
     >
       Edit Meal
+    </Text>
+    </TouchableOpacity> */}
+    <TouchableOpacity
+      onPress={() =>
+        navigation.navigate('Add Meal', { name: 'Jane' })
+      }
+      style={[styles.button]}
+    ><Text 
+    style={styles.buttonText}
+    >
+      Add Meal
     </Text>
     </TouchableOpacity>
     <TouchableOpacity
@@ -41,7 +51,7 @@ export default function HomeScreen({navigation}) {
       Add Cost
     </Text>
     </TouchableOpacity>
-    <TouchableOpacity
+    {/* <TouchableOpacity
       onPress={() =>
         navigation.navigate('Edit Cost', { name: 'Jane' })
       }
@@ -51,18 +61,7 @@ export default function HomeScreen({navigation}) {
     >
       Edit Cost
     </Text>
-    </TouchableOpacity>
-    <TouchableOpacity
-      onPress={() =>
-        navigation.navigate('Add Meal Member', { name: 'Jane' })
-      }
-      style={styles.button}
-    ><Text 
-    style={styles.buttonText}
-    >
-      Add Meal Member
-    </Text>
-    </TouchableOpacity>
+    </TouchableOpacity> */}
     <TouchableOpacity
       onPress={() =>
         navigation.navigate('Deposit', { name: 'Jane' })

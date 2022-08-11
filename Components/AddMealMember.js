@@ -1,6 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useEffect, useState } from 'react'
 import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { getItem, setItem } from './ReusableFunctions/SetGetItem';
 
 export default function AddMealMember() {
   const [name,setName] = useState('');
@@ -23,22 +24,6 @@ export default function AddMealMember() {
     // console.log("meal Count: "+value);
   }
 
-  const getItem = async() =>{
-    try{
-      let name = await AsyncStorage.getItem("mealInfo");
-      return JSON.parse(name);
-    }catch(err){
-      console.log(err)
-    }
-  }
-
-  const saveItem = async(arr) =>{
-    try{
-     await AsyncStorage.setItem('mealInfo',JSON.stringify(arr));
-    }catch(err){
-     console.log(err)
-    }
- }
 
 
   const insertItem = async() =>{
@@ -46,9 +31,11 @@ export default function AddMealMember() {
     .then(item=>{
       // console.log("insertion: ");
       // console.log(item);
+      if(item===null)item = [];
       item.push({name:name,meal:meal,deposit:deposit})
       setAllMembers(item);
-      saveItem(item);
+      setItem(item);
+      console.log(item);
     })
     .catch(function () {
       console.log("Promise Rejected");
@@ -56,7 +43,6 @@ export default function AddMealMember() {
   }
 
   useEffect(()=>{
-    // console.log(name);
     setAllMembers(getItem()); 
   },[])
 
@@ -84,7 +70,7 @@ export default function AddMealMember() {
                placeholder = "Number of Meals"
                placeholderTextColor = "#9a73ef"
                autoCapitalize = "none"
-               onChangeText = {(text)=>changeDeposit(text)}
+               onChangeText = {(text)=>changeMealCount(text)}
                keyboardType = "decimal-pad"
                />
             
