@@ -14,9 +14,9 @@ export default function Deposit() {
     for(let i=0;i<allMembers.length;i++)
     {
       if(allMembers[i]["name"]===name){
-        allMembers[i]["meal"] = parseFloat(allMembers[i]["meal"]);
-        allMembers[i]["meal"]+=parseFloat(meal);
-        alert(allMembers[i]["meal"]);
+        allMembers[i]["deposit"] = parseInt(allMembers[i]["deposit"]);
+        allMembers[i]["deposit"]+=parseInt(meal);
+        alert("New Amount" +allMembers[i]["deposit"]);
         setFirstTime(firstTime+1);
         setLoad(!load);
       }
@@ -25,7 +25,7 @@ export default function Deposit() {
 
   const FinaliseMeal = () =>{
     setItem(allMembers)
-    .then(()=>alert("Meal Updated Successfully!"))
+    .then(()=>alert("Deposit Amount Updated Successfully!"))
     .catch(e=>console.log("Finalised "+e));
   }
 
@@ -49,7 +49,7 @@ export default function Deposit() {
           <Text style={{fontSize:25}}>Deposit Amount: {item["deposit"]}</Text>
           <TextInput 
           keyboardType='decimal-pad'
-          placeholder="Enter today's meal"
+          placeholder="Enter Deposit Amount"
           style={{margin: 15,
             height: 40,
             borderColor: '#7a42f4',
