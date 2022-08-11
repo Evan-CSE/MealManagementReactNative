@@ -1,0 +1,21 @@
+SafeAreaView => adds padding on top to adjust spaces
+View => Similar to Div
+
+We should wrap text in <Text> component
+
+image clickable korte "touchable" use korte hoy
+button customization 1:08
+
+
+StyleSheet API ==> for styling components
+
+StatusBar API => an object indicating upper part of the android phone
+
+flex => value of it takes available space in screen
+
+
+link:https://www.youtube.com/watch?v=0-S5a0eXPoc&ab_channel=ProgrammingwithMosh
+
+
+
+https://stackoverflow.com/questions/63665735/manual-link-react-native-fs-in-react-native
