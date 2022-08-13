@@ -12,43 +12,46 @@ export default function CalculateMeal() {
   useEffect(()=>{
     getItem()
     .then((item)=>{
+      console.log(item+" line 15");
       setAllMembers(item);
       getCost()
-      .then(item=>{
-        setTotalCost(parseInt(item))
+      .then(item2=>{
+        setTotalCost(parseInt(item2))
+        console.log(item2+"line 20")
       })
     })
     .then(()=>{
-      let ml=0;
+      let ml=0.0;
       for(let i=0;i<allMembers.length;i++)
       {
         ml+=parseFloat(allMembers[i]["meal"]);
       }
       setMealRate(totalCost/ml);
-    }).catch(e=>console.log("On Calculate Meal ; line 26"));
-  },[])
+      console.log(totalCost,ml);
+    }).catch(e=>console.log("On Calculate Meal ; line 29 "+e));
+  },[load,totalCost,mealRate,allMembers])
   return (
     <ScrollView>
-      {allMembers===null || allMembers.length==0?<Text>
+      {allMembers===null || allMembers.length==0?<Text style={{textAlign:'center',fontSize:20,color:'blue',marginTop:'50%'}}>
         Please Wait some couple of seconds
       </Text>:
       <View>
-          <Text>
-            Meal Rate:{mealRate}
+          <Text style={{fontSize:22,textAlign:'center',color:'blue'}}>
+            Meal Rate:{mealRate} tk
           </Text>
         {
-          allMembers.map((item,index)=><View key={index} style={{alignItems:'center'}}>
-            <Text style={{fontSize:25}}>
+          allMembers.map((item,index)=><View key={index} style={{borderColor:'tomato',borderBottomWidth:1,borderTopWidth:1}}>
+            <Text style={{fontSize:15}}>
               Name: {item["name"]}
             </Text>
-            <Text style={{fontSize:25}}>
+            <Text style={{fontSize:15}}>
               Meal: {item["meal"]}
             </Text>
-            <Text style={{fontSize:25}}>
+            <Text style={{fontSize:15}}>
               Deposit: {item["deposit"]}
             </Text>
-            <Text style={{fontSize:25}}>
-              Amount to be received: {parseInt(item["deposit"])-(parseFloat(item["deposit"])*parseFloat(mealRate))}
+            <Text style={{fontSize:15}}>
+              Amount to be received: {parseInt(item["deposit"])-(parseFloat(item["meal"])*parseFloat(mealRate))}
             </Text>
           </View>)
         }

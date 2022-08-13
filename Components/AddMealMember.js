@@ -27,6 +27,13 @@ export default function AddMealMember() {
 
 
   const insertItem = async() =>{
+    let mealCount= parseFloat(meal),depositAmount=  parseInt(deposit);
+    console.log(mealCount,typeof(mealCount));
+    // console.log(name,typeof(meal),typeof(deposit));
+    if(name.length==0){
+      alert("Fill out all the fields properly");
+      return;
+    }
     getItem()
     .then(item=>{
       // console.log("insertion: ");
@@ -36,6 +43,7 @@ export default function AddMealMember() {
       setAllMembers(item);
       setItem(item);
       console.log(item);
+      alert("Member added Successfully");
     })
     .catch(function () {
       console.log("Promise Rejected");

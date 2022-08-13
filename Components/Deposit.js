@@ -21,6 +21,7 @@ export default function Deposit() {
         setLoad(!load);
       }
     }
+    setMeal(0);
   }
 
   const FinaliseMeal = () =>{
@@ -38,12 +39,12 @@ export default function Deposit() {
     else{
       setAllMembers(allMembers);
     }
-  },[load])
+  },[load,firstTime])
   return (
     <View style={{flex:1,backgroundColor:'whitesmoke'}} >
-      {allMembers==null || allMembers.length==0?<Text>Items loading or items don't exist</Text>:
+      {allMembers==null || allMembers.length==0?<Text style={{textAlign:'center',fontSize:20,color:'blue',marginTop:'50%'}}>Items loading or items don't exist</Text>:
       <ScrollView>
-        {allMembers.map((item,index)=><View key={index} style={{alignItems:'center'}}>
+        {allMembers.map((item,index)=><View key={index}>
           <Text style={{fontSize:25}}>Name: {item["name"]}</Text>
           <Text style={{fontSize:25}}>Total Meal: {item["meal"]}</Text>
           <Text style={{fontSize:25}}>Deposit Amount: {item["deposit"]}</Text>
@@ -68,14 +69,14 @@ export default function Deposit() {
             </TouchableOpacity>
           </View>)}
           <TouchableOpacity
-               style = {{backgroundColor: '#7a42f4',
+               style = {{backgroundColor: 'seagreen',
                padding: 10,
                margin: 15,
                height: 40,}}
                onPress = {
                   () => FinaliseMeal()
                }>
-               <Text style = {{ color: 'white'}}> Submit </Text>
+               <Text style = {{ color: 'white',textAlign:'center'}}> Finalise Record </Text>
             </TouchableOpacity>  
       </ScrollView>
       }

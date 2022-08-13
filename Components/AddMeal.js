@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { Button, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native'
 import { getItem, setItem } from './ReusableFunctions/SetGetItem';
 
-
 export default function AddMeal() {
   const [allMembers,setAllMembers] = useState([]);
   const [meal,setMeal] = useState(0);
   const [load,setLoad] = useState(false);
   const [firstTime,setFirstTime] = useState(0);
 
+  
   const handleSubmit = (name) =>{
     const newObj = {};
     for(let i=0;i<allMembers.length;i++)
@@ -16,11 +16,12 @@ export default function AddMeal() {
       if(allMembers[i]["name"]===name){
         allMembers[i]["meal"] = parseFloat(allMembers[i]["meal"]);
         allMembers[i]["meal"]+=parseFloat(meal);
-        alert(allMembers[i]["meal"]);
+        alert("Meal updated to "+allMembers[i]["meal"]+" for member "+allMembers[i]["name"]);
         setFirstTime(firstTime+1);
         setLoad(!load);
       }
     }
+    setMeal(0);
   }
 
   const FinaliseMeal = () =>{
@@ -38,12 +39,12 @@ export default function AddMeal() {
     else{
       setAllMembers(allMembers);
     }
-  },[load])
+  },[load,meal])
   return (
     <View style={{flex:1,backgroundColor:'whitesmoke'}} >
-      {allMembers==null || allMembers.length==0?<Text>Items loading or items don't exist</Text>:
+      {allMembers==null || allMembers.length==0?<Text style={{textAlign:'center',fontSize:20,color:'blue',marginTop:'50%'}}>Items loading or items don't exist</Text>:
       <ScrollView>
-        {allMembers.map((item,index)=><View key={index} style={{alignItems:'center'}}>
+        {allMembers.map((item,index)=><View key={index}>
           <Text style={{fontSize:25}}>Name: {item["name"]}</Text>
           <Text style={{fontSize:25}}>Total Meal: {item["meal"]}</Text>
           <Text style={{fontSize:25}}>Deposit Amount: {item["deposit"]}</Text>
@@ -68,14 +69,14 @@ export default function AddMeal() {
             </TouchableOpacity>
           </View>)}
           <TouchableOpacity
-               style = {{backgroundColor: '#7a42f4',
+               style = {{backgroundColor: 'seagreen',
                padding: 10,
                margin: 15,
                height: 40,}}
                onPress = {
                   () => FinaliseMeal()
                }>
-               <Text style = {{ color: 'white'}}> Submit </Text>
+               <Text style = {{ color: 'white',textAlign:'center'}}> Finalise Meal Record</Text>
             </TouchableOpacity>  
       </ScrollView>
       }

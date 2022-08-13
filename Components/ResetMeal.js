@@ -7,7 +7,8 @@ export default function ResetMeal() {
 
   const EmptyDb = async() =>{
     try {
-      await AsyncStorage.removeItem("mealInfo")
+      await AsyncStorage.removeItem("mealInfo");
+      await AsyncStorage.removeItem('mealCost');
     } catch(e) {
       console.log("Error while resetting DB: "+e);
     }
@@ -19,8 +20,8 @@ export default function ResetMeal() {
     .catch(()=>console.log("No Error"))
   },[])
   return (
-    <Text>
-      {resetDb==-1?"Reset Successful":"Rest to be pending"}
+    <Text style={{flex:1,textAlign:'center',color:'red',fontSize:25,marginTop:'50%'}}>
+      {resetDb==-1?"Reset Successful":"Reset to be pending"}
     </Text>
   )
 }
